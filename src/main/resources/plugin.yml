@@ -1,0 +1,16 @@
+name: StockGame
+version: 1.0.0
+main: kr.hetagram.stock.StockPlugin
+api-version: '1.20.6'
+description: 설정 파일로 개조하는 실시간 주식 거래소
+author: hetagram
+softdepend: [Citizens]
+commands:
+  stock:
+    description: 주식 거래소 메뉴 및 관리자 명령
+    usage: /stock [menu|join|parkour|work|fish|shop|sell|workkit|portfolio|pay|loan|repay|debt|loanadmin|start|stop|news|setprice|lender|skin|interval|initialcash|reset|reload|status]
+    aliases: [주식]
+permissions:
+  stock.admin:
+    description: 시장 운영 명령어
+    default: op

@@ -1,0 +1,9 @@
+.tools/
+/cache/
+/libraries/
+/versions/
+.verification/
+target/
+server/
+dist/
+*.log

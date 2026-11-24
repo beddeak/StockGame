@@ -1,0 +1,90 @@
+# 채굴장/낚시터는 기존 주식 월드 안에만 설치합니다. 새 월드를 만들지 않습니다.
+# 위치는 거래소 스폰 블록 좌표 기준입니다. 기본 x+38은 기존 x±30 풀밭 오른쪽입니다.
+# 소유 마커 없는 위치에 다른 건축이 있으면 해당 구역 설치를 건너뛰고 보존합니다.
+# 이미 설치한 구역은 다시 시공하지 않습니다. 위치/크기 변경은 기존 마커와 다르면 거부합니다.
+schema: 1
+enabled: true
+round-resources-only: true # 이전 라운드의 광석/물고기는 보관해도 판매 불가. 첫 설치 때 현재 일반 아이템만 1회 호환
+build-per-tick: 200
+path:
+  start-offset-x: 27       # 기존 풀밭에서 구역 왼쪽까지 폭 3의 접근 길을 연결합니다.
+  width: 3
+quarry:
+  enabled: true
+  offset-x: 38
+  offset-z: -6
+  size: 7                 # 내부 한 변. 홀수 5~15
+  depth: 3                # 1~4. 고정 계단을 두어 맨손으로도 나올 수 있습니다.
+  regeneration-ticks: 600 # 채굴 후 30초. 20틱=1초, 재생 때 다른 블록을 덮어쓰지 않습니다.
+  occupied-retry-ticks: 20 # 재생 위치에 플레이어/주민 몸이 있으면 1초 뒤 재시도
+  ores:                   # 광석 재료: 추첨 가중치. 가격은 아래 catalog와 별개입니다.
+    COAL_ORE: 30
+    COPPER_ORE: 25
+    IRON_ORE: 20
+    GOLD_ORE: 10
+    REDSTONE_ORE: 7
+    LAPIS_ORE: 5
+    DIAMOND_ORE: 2
+    EMERALD_ORE: 1
+pond:
+  enabled: true
+  offset-x: 38
+  offset-z: 14
+  size: 7                 # 원천 물 내부 한 변. open-water용 최소 7x7
+  depth: 3                # 원천 물 깊이 최소 3, 최대 4
+  bite-min-ticks: 60      # 거래소 월드 입질 대기 3~12초(바닐라 5~30초). 20틱=1초. reload로 반영
+  bite-max-ticks: 240
+  lure-min-ticks: 20      # 물고기가 다가오는 시간 1~2초(바닐라 1~4초)
+  lure-max-ticks: 40
+palette:
+  border: STONE_BRICKS
+  wall: STONE_BRICKS
+  bottom: STONE
+  stairs: STONE
+  walkway: POLISHED_ANDESITE
+  light: SEA_LANTERN
+catalog:                  # 아이템 1개 판매 단가(원). 내부에서는 정수 전으로 변환합니다.
+  COAL: 450
+  RAW_COPPER: 300
+  RAW_IRON: 900
+  RAW_GOLD: 1500
+  REDSTONE: 150
+  LAPIS_LAZULI: 225
+  DIAMOND: 3750
+  EMERALD: 4500
+  COD: 6000
+  SALMON: 7500
+  TROPICAL_FISH: 10500
+  PUFFERFISH: 9000
+kit:
+  IRON_PICKAXE: 1
+  FISHING_ROD: 1
+text:
+  quarry: '&6&l채굴장\n&f광석 채굴 → /stock sell 판매\n&7계단으로 이동 · 광석 자동 재생'
+  pond: '&b&l낚시터\n&f원천 물에 낚시 → /stock sell 판매\n&7낚싯대는 /stock workkit'
+kit-unbreakable: true      # 지급 도구 내구도 무한. 도구는 판매 목록에 넣을 수 없습니다.
+shop:
+  title: '&6채굴·낚시 수입 / 판매'
+  item-name: '{item}'      # 이 기본값이면 마인크래프트 언어 설정의 아이템 이름 사용
+  item-lore: ['&7개당 &e{price}원', '&a클릭: 가방에 있는 이 재료 전부 판매', '&7이름/인챈트 등 특수 아이템은 제외']
+  sell-slot: 49
+  sell-icon: EMERALD
+  sell-name: '&a판매 가능한 아이템 전부 판매'
+  mine-slot: 45
+  mine-icon: IRON_PICKAXE
+  mine-name: '&e채굴장으로 이동'
+  fish-slot: 46
+  fish-icon: FISHING_ROD
+  fish-name: '&b낚시터로 이동'
+  kit-slot: 47
+  kit-icon: CHEST
+  kit-name: '&f기본 도구 받기'
+  parkour-slot: 48
+  parkour-icon: FEATHER
+  parkour-name: '&a점프맵 도전'
+  close-slot: 53
+  close-icon: BARRIER
+  close-name: '&7닫기'
+  receipt: '&a{count}개 판매 완료. {amount}원을 받았습니다.'
+  kit-message: '&a없는 기본 도구를 지급했습니다. 채굴·낚시 후 /stock sell'
+  inventory-full: '도구를 받을 가방 공간을 먼저 비워주세요.'

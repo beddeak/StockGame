@@ -1,0 +1,73 @@
+# 종목 ID는 영문 소문자/숫자/하이픈/밑줄만 허용. 저장된 보유량은 이 ID와 연결됩니다.
+# 종목 제거는 해당 종목을 아무도 보유하지 않을 때만 reload로 허용됩니다.
+# base-rise-chance: 상승 확률(0~1), min/max-change-percent: config.yml 기준 시간(기본 4초)의 변동폭(%).
+# 시작 가격/폐지 기준/아이콘/종목수 모두 여기에서 수정합니다.
+# command-aliases의 첫 이름은 TAB 자동완성과 하단 자산 표시에 씁니다. 전체 회사명도 명령어 사용 가능.
+stocks:
+  # 각 skin-name은 Minecraft 닉네임입니다. /stock skin <회사명> <닉네임>으로 저장할 수 있습니다.
+  # 빈 값은 기본 플레이어 스킨. 전체 회사명/주식 ID/가격은 스킨 변경에 영향받지 않습니다.
+  redtech:
+    name: '새벽들제분'
+    skin-name: 'MHF_Melon'
+    command-aliases: ['새벽제분', '새벽들', '제분소']
+    sector: food
+    icon: REDSTONE
+    pedestal: RED_CONCRETE
+    display-block: HAY_BLOCK
+    start-price: 100000
+    min-change-percent: 0.5
+    max-change-percent: 4.0
+    base-rise-chance: 0.5
+    delist-price: 100
+  cloud:
+    name: '유리등극장'
+    skin-name: 'MHF_Pumpkin'
+    command-aliases: ['유리등']
+    sector: entertainment
+    icon: LAPIS_LAZULI
+    pedestal: LIGHT_BLUE_CONCRETE
+    display-block: CRAFTING_TABLE
+    start-price: 200000
+    min-change-percent: 1.0
+    max-change-percent: 6.0
+    base-rise-chance: 0.5
+    delist-price: 100
+  deepoil:
+    name: '현무암방호공업'
+    skin-name: 'MHF_Golem'
+    command-aliases: ['현무방호', '현무암', '방호']
+    sector: military
+    icon: COAL
+    pedestal: ORANGE_CONCRETE
+    display-block: MELON
+    start-price: 50000
+    min-change-percent: 0.3
+    max-change-percent: 3.5
+    base-rise-chance: 0.5
+    delist-price: 100
+  greenbio:
+    name: '반딧불연산소'
+    skin-name: 'MHF_Enderman'
+    command-aliases: ['반딧불연산소', '반딧불']
+    sector: ai
+    icon: EMERALD
+    pedestal: LIME_CONCRETE
+    display-block: AMETHYST_BLOCK
+    start-price: 250000
+    min-change-percent: 1.5
+    max-change-percent: 8.0
+    base-rise-chance: 0.5
+    delist-price: 50
+  blueenergy:
+    name: '은고리궤도운송'
+    skin-name: 'MHF_Blaze'
+    command-aliases: ['은고리궤도운송', '은고리']
+    sector: space
+    icon: BLAZE_POWDER
+    pedestal: CYAN_CONCRETE
+    display-block: SPONGE
+    start-price: 100000
+    min-change-percent: 0.5
+    max-change-percent: 5.0
+    base-rise-chance: 0.5
+    delist-price: 100

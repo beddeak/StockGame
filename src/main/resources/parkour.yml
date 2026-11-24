@@ -1,0 +1,90 @@
+# 점프맵은 기존 거래소 월드의 왼쪽 하늘에만 추가합니다. 새 월드/기존 건축 덮어쓰기 없음.
+# 건축 구역이나 다른 맵 구조물이 보호 범위에 있으면 설치를 건너뛰며 그 블록은 지우지 않습니다.
+# 플랫폼/기둥의 모든 좌표·보상·제한·문구를 이 파일에서 수정할 수 있습니다.
+schema: 1
+enabled: true
+build-per-tick: 100
+
+# 원점: 월드 스폰의 블록 좌표. 발판의 실제 블록 y = 스폰 발밑 바닥 + offset-y + 아래 y.
+# 기본 첫 발판은 지상보다 8칸 높아서 땅을 걸어 순서를 밟을 수 없습니다.
+# 기본 보호 범위 x=-62~-34, z=-2~39. 거래소 x=-30~30과 오른쪽 채굴/낚시터(x+38)를 피합니다.
+offset-x: -60
+offset-y: 8
+offset-z: 0
+# 지상 진입 안내 홀로그램: 스폰 x/z + 설정값 + 0.5, 스폰 발 높이 + sign-offset-y.
+sign-offset-x: -30
+sign-offset-y: 2
+sign-offset-z: 0
+boundary-margin: 2          # 점프 중 몸이 나가는 바깥 2칸까지 검사·보호합니다.
+clear-above: 2              # 모든 발판에 플레이어 머리 공간 2칸 이상 확보.
+failure-below-offset-y: 4   # 스폰 발 높이+4 아래로 떨어지면 마지막 체크포인트로 안전 복귀.
+
+reward: 50000               # 원 단위. 정상 완주 보상. 사채가 있으면 기존 수입 회수 규칙 적용.
+cooldown-seconds: 120       # 완주 보상 후 다음 보상까지 기다릴 시간. 연습은 가능.
+minimum-run-seconds: 10     # 비정상적인 초고속 완주만 거부합니다. 정상적인 빠른 완주는 보상합니다.
+maximum-run-seconds: 600    # 장시간 묵혀둔 시도는 종료합니다. 기본 10분.
+display:                   # 홀로그램은 시작·체크포인트·완주·지상 입구에만 표시합니다.
+  label-height: 2
+  text-scale: 0.8
+  line-width: 400
+  view-range: 2
+palette:                   # 발판은 반드시 온전한 정육면체 블록을 사용하세요(계단/반블록/펜스 금지).
+  normal: QUARTZ_BLOCK
+  start: LIME_CONCRETE
+  checkpoint: GOLD_BLOCK
+  finish: EMERALD_BLOCK
+  pillar: POLISHED_DEEPSLATE
+
+# 이 목록의 '파일에 적힌 순서'가 실제 진행 순서입니다. 각 발판을 모두 순서대로 밟아야 완주.
+# x/z는 각 발판의 가장 작은 블록 좌표(원점 기준), y는 첫 발판에 더하는 높이입니다.
+# width/depth는 온전한 블록 수. CHECKPOINT/START/FINISH는 3x3으로 안전하게 양발 착지 가능.
+# yaw는 체크포인트 복귀 시 보는 방향: 0=+z, 90=-x, -90=+x, 180=-z.
+# 4칸 점프는 1x1 발판 좌표 차이 5 = 사이 빈칸 4개. 특수 아이템/트릭 없이 달리기 점프 사용.
+landings:
+  start: { kind: START, x: 0, y: 0, z: 0, width: 3, depth: 3, label: '&a&l기본기 점프맵 · 시작', yaw: 0 }
+  warm-up: { kind: NORMAL, x: 1, y: 0, z: 6, width: 1, depth: 1, label: '&f01 · 달리기 점프', yaw: 0 }
+  four-gap-one: { kind: NORMAL, x: 1, y: 0, z: 11, width: 1, depth: 1, label: '&c02 · 4칸 점프', yaw: 0 }
+  one-up: { kind: NORMAL, x: 1, y: 1, z: 14, width: 1, depth: 1, label: '&f03 · 한 칸 상승', yaw: -45 }
+  zigzag-one: { kind: NORMAL, x: 4, y: 1, z: 16, width: 1, depth: 1, label: '&f04 · 대각선 착지', yaw: -60 }
+  checkpoint-one: { kind: CHECKPOINT, x: 7, y: 1, z: 17, width: 3, depth: 3, label: '&6&l체크포인트 1', yaw: 0 }
+  straight-one: { kind: NORMAL, x: 8, y: 1, z: 23, width: 1, depth: 1, label: '&f06 · 속도 유지', yaw: 0 }
+  four-gap-two: { kind: NORMAL, x: 8, y: 1, z: 28, width: 1, depth: 1, label: '&c07 · 4칸 점프', yaw: -60 }
+  neo-one-entry: { kind: NORMAL, x: 11, y: 1, z: 30, width: 1, depth: 1, label: '&b08 · 싱글 네오 진입', yaw: -90 }
+  neo-one-exit: { kind: NORMAL, x: 13, y: 1, z: 30, width: 1, depth: 1, label: '&b09 · 기둥 옆으로 돌아 착지', yaw: -90 }
+  checkpoint-two: { kind: CHECKPOINT, x: 15, y: 1, z: 29, width: 3, depth: 3, label: '&6&l체크포인트 2', yaw: -30 }
+  spiral-north: { kind: NORMAL, x: 19, y: 2, z: 33, width: 1, depth: 1, label: '&d11 · 회오리 진입', yaw: -45 }
+  spiral-east: { kind: NORMAL, x: 21, y: 3, z: 35, width: 1, depth: 1, label: '&d12 · 회오리 1', yaw: 45 }
+  spiral-south: { kind: NORMAL, x: 19, y: 4, z: 37, width: 1, depth: 1, label: '&d13 · 회오리 2', yaw: 135 }
+  spiral-west: { kind: NORMAL, x: 17, y: 5, z: 35, width: 1, depth: 1, label: '&d14 · 회오리 3', yaw: -135 }
+  spiral-top: { kind: NORMAL, x: 19, y: 6, z: 33, width: 1, depth: 1, label: '&d15 · 회오리 정상', yaw: -120 }
+  checkpoint-three: { kind: CHECKPOINT, x: 22, y: 6, z: 30, width: 3, depth: 3, label: '&6&l체크포인트 3', yaw: 180 }
+  straight-two: { kind: NORMAL, x: 23, y: 6, z: 26, width: 1, depth: 1, label: '&f17 · 반대 방향 달리기', yaw: 180 }
+  four-gap-three: { kind: NORMAL, x: 23, y: 6, z: 21, width: 1, depth: 1, label: '&c18 · 마지막 4칸 점프', yaw: 180 }
+  neo-two-exit: { kind: NORMAL, x: 23, y: 6, z: 19, width: 1, depth: 1, label: '&b19 · 반대 방향 싱글 네오', yaw: 135 }
+  zigzag-two: { kind: NORMAL, x: 20, y: 6, z: 17, width: 1, depth: 1, label: '&f20 · 대각선 착지', yaw: 180 }
+  final-up: { kind: NORMAL, x: 20, y: 7, z: 14, width: 1, depth: 1, label: '&f21 · 마지막 상승', yaw: 120 }
+  final-turn: { kind: NORMAL, x: 17, y: 7, z: 12, width: 1, depth: 1, label: '&f22 · 착지 후 방향 전환', yaw: 135 }
+  finish: { kind: FINISH, x: 13, y: 7, z: 8, width: 3, depth: 3, label: '&a&l완주 · 초록 발판', yaw: 180 }
+
+# 네오는 두 발판 사이에 머리보다 높은 기둥이 있어 직선으로 통과하거나 위로 넘을 수 없습니다.
+# 기둥 밖 빈 공간으로 돌아서 다음 발판에 착지하세요. 회오리는 중앙 기둥 둘레를 한 바퀴 상승.
+pillars:
+  single-neo-one: { x: 12, y: 1, z: 30, height: 5, width: 1, depth: 1 }
+  spiral-center: { x: 19, y: 2, z: 35, height: 9, width: 1, depth: 1 }
+  single-neo-two: { x: 23, y: 6, z: 20, height: 5, width: 1, depth: 1 }
+
+text:
+  instructions: '&a&l기본기 점프맵\n&f/stock parkour 로 입장\n&7달리기 · 4칸 · 회오리 · 싱글 네오\n&6완주 {reward}원 · 보상 간격 {cooldown}초'
+  started: '&a점프맵 시작! 모든 발판을 순서대로 밟으세요. 완주 {reward}원 · 보상 간격 {cooldown}초'
+  checkpoint: '&6체크포인트 {checkpoint} 저장! 떨어지면 여기로 돌아옵니다.'
+  fell: '&e체크포인트로 복귀했습니다. 다시 도전하세요!'
+  finished: '&a점프맵 완주! {seconds}초 · {amount}원을 받았습니다.'
+  practice-finished: '&a연습 완주! {seconds}초 · 다음 보상까지 {secondsLeft}초 남았습니다.'
+  cooldown: '&e보상은 {seconds}초 후 다시 받을 수 있습니다. 연습은 계속 가능합니다.'
+  cancelled: '&7점프맵 도전을 취소했습니다.'
+  invalid-mode: '&c생존/모험 모드에서 비행·탑승·이동 보조 효과 없이 도전하세요.'
+  too-fast: '&e정상 완주 최소 시간에 도달하지 않았습니다. /stock parkour 로 다시 시작하세요.'
+  timeout: '&e도전 시간이 끝났습니다. /stock parkour 로 다시 시작하세요.'
+  not-ready: '&e점프맵이 아직 준비 중이거나 사용할 수 없습니다.'
+  left: '&7점프맵을 나왔습니다.'
+  reloaded: '&e점프맵 설정이 바뀌어 진행 중 도전을 종료했습니다.'

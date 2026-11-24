@@ -1,0 +1,11 @@
+# Domain tests deliberately use this independent fixture instead of editable company news.
+news:
+  fixture-market-boost:
+    headline: '{stock} fixture event'
+    sectors: [fixture-market]
+    stocks: []
+    weight: 1
+    duration-seconds: 32
+    rise-chance: 0.9
+    multiplier: 3.0
+    immediate-percent: 8

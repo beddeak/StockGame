@@ -1,0 +1,110 @@
+# 거래소는 전용 void 월드에 최초 1회 자동 건설됩니다. 기존 일반 월드는 건드리지 않습니다.
+# 외형/크기를 바꾼 경우 서버를 끄고 새 world-name을 지정하면 새 거래소를 만듭니다.
+# 위치/크기 변경은 서버 재시작 필요. 문구/색상/순위 기준은 /stock reload로 반영합니다.
+# 종목이 늘면 panel-columns 개씩 뒤쪽으로 자동 확장. 1~48 종목 지원.
+world-name: stock_exchange_kiosks # 기존 실내 맵은 남기고 사진 형태의 풀밭에 새로 생성
+protection:
+  allow-building: false    # 일반 참가자의 설치/파괴 차단. OP 건축 및 work.yml 채굴장의 채굴만 허용
+origin: {x: 0, y: 64, z: 0}
+layout:
+  preserve-builds: true     # 완공한 월드는 설정 변경/재시작 때 재시공하지 않아 사용자 건축 보존
+  style: kiosks            # kiosks=사진 형태 받침대/장식 블록/실시간 글자. wall=기존 벽면 차트
+  panel-columns: 2
+  panel-gap: 6
+  row-gap: 25
+  floor-margin: 8
+  spawn-z-offset: 15
+  ceiling-height: 23
+  build-blocks-per-tick: 4000 # 맵 생성은 여러 틱으로 분산
+kiosk:
+  display-mode: player      # player=전신 스킨 NPC / block=장식 블록
+  npc-height: 1.0           # 바닥 기준 NPC 발 위치. 1이면 풀밭 위
+  npc-yaw: 0                # NPC가 바라보는 방향(도). 변경 후 재시작
+  columns: 5
+  spacing: 10
+  row-spacing: 16
+  margin: 10
+  time: 18000              # 밤. 0~23999 범위로 변경 가능
+  floor: GRASS_BLOCK
+  default-pedestal: CYAN_CONCRETE
+  pedestal-width: 2
+  pedestal-height: 1
+  history-lines: 10
+  history-height: 4.0
+  # 새 가격은 아래에서 들어오고 기존 행은 위로 이동합니다. 20틱=1초, 0=즉시 이동.
+  # 갱신이 빠르면 실제 주가 주기 이내로 보간 시간을 자동 줄입니다. 거래 가격은 보간하지 않습니다.
+  scroll-ticks: 6
+  line-spacing: 0.30       # 가격 행 사이의 월드 블록 간격. 변경 후 서버 재시작
+  name-height: 3.0
+  block-height: 2.5
+  block-scale: 0.9
+  text-scale: 1.2
+  name-line-width: 220      # 긴 회사명은 자동 줄바꿈. 생략하지 않음
+  leaderboard-x: 0
+  leaderboard-y: 1.5       # 스폰 정면 눈높이 부근. 글자판 아래쪽 기준, 바닥으로부터의 높이
+  leaderboard-z: 5         # 스폰 z=15.5에서 약 10블록 앞
+  leaderboard-scale: 0.9
+  leaderboard-line-width: 800
+  portfolio-x: 2.5
+  portfolio-y: 1.6
+  rise-color: '&c'
+  fall-color: '&b'
+  flat-color: '&f'
+  large-change-percent: 3
+  rise-symbol: '↑'
+  large-rise-symbol: '▲'
+  fall-symbol: '↓'
+  large-fall-symbol: '▼'
+  flat-symbol: '─'
+  price-decimals: 0
+  # 뉴스판은 플레이어 입장 위치(spawn)를 기준으로 이동합니다. 큰 입구 배너를 대신합니다.
+  news-offset-x: 0
+  news-offset-y: 4         # 가까워진 시세판 위에 배치해 글자 겹침 방지
+  news-offset-z: -8
+  news-scale: 0.9
+  news-line-width: 320
+ranking:
+  world-enabled: false    # 순위는 오른쪽 사이드바에 표시. 별도 월드 홀로그램도 원하면 true
+  # 모든 플레이어에게 항상 공개. 접속을 종료한 참가자도 순위에 남습니다.
+  metric: net-equity       # 순자산=현금+주식평가액-채무. net-cash=현금-채무, cash/equity=이전 총액 방식
+  max-entries: 10
+  # x/y/z는 origin으로부터의 상대 좌표입니다. y=3이면 바닥보다 3블록 위.
+  x: 5
+  y: 3
+  z: 5
+  scale: 1.1
+  line-width: 360
+chart:
+  width: 24
+  height: 12
+  floor-offset: 6
+  history-size: 48
+  up: RED_CONCRETE
+  down: BLUE_CONCRETE
+  flat: LIGHT_GRAY_CONCRETE
+  background: BLACK_CONCRETE
+  grid: GRAY_CONCRETE
+palette:
+  floor: POLISHED_DEEPSLATE
+  aisle: SMOOTH_QUARTZ
+  wall: WHITE_CONCRETE
+  glass: TINTED_GLASS
+  trim: GOLD_BLOCK
+  light: SEA_LANTERN
+  counter: QUARTZ_BLOCK
+  roof: BLACK_CONCRETE
+text:
+  entrance: '&e&l뉴스'
+  help: '&f좌클릭 매수 &8| &f우클릭 매도'
+  terminal: '&e{name} 거래하기'
+  panel: '&f&l{name}\n{color}{price}원  ({change}%)\n&7{state} &8| &7최근 {count}개 캔들'
+  portfolio: '&f수량: {quantity}\n&f평단: {average}\n{color}수익: {profit}\n{color}{return}%'
+  leaderboard-title: '&6&l실시간 주식 시세'
+  leaderboard-row: '{color}{symbol} &f{name}\n  {color}{price}원  ({change}%)'
+  news-panel: '&e&l뉴스\n&f{headline}'
+  news-idle: '새 소식을 기다리는 중입니다.'
+  ranking-title: '&6&l순위'
+  ranking-row: '&f{player} &c{money}' # {rank}도 사용 가능. 기본은 흰 닉네임/빨간 돈
+  ranking-empty: '&7참가자를 기다리는 중입니다.'
+  delisted-row: '&4▼ &8{name}\n  &4&l상장폐지 · 0원'
+  delisted-name: '&8&m{name}&r\n&4&l상장폐지'

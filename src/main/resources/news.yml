@@ -1,0 +1,473 @@
+# 회사별 가상 뉴스입니다. 각 회사에 호재 5개/악재 5개(총 50개)를 넣었습니다.
+# headline은 자유롭게 수정하고, {stock}은 표시 회사명으로 자동 치환됩니다. 속보 타이틀에는 짧은 이름(첫 별칭)이 들어갑니다.
+# 타이틀은 화면 폭이 좁아 너무 긴 문구는 양 끝이 잘릴 수 있습니다. 전체 문구는 뉴스판에 그대로 표시됩니다.
+# stocks는 대상 회사의 저장 ID입니다. 아래 ID는 그대로 두고 문구/효과를 편집하는 것이 안전합니다.
+# 뉴스 ID(콜론 앞 이름)는 영문 소문자/숫자/-/_만 됩니다. 대문자가 있으면 /stock reload가 거부됩니다.
+# sectors: []와 stocks: [회사ID]를 함께 써서 다른 회사에 전용 뉴스가 발생하지 않게 합니다.
+# weight: 추첨 가중치(기본 모두 1). 0이면 자동 추첨에서 제외하며 강제 실행은 가능합니다.
+# rise-chance: 뉴스 중 상승 확률(0~1), multiplier: 기준 시간당 기본 변동폭의 배수.
+# duration-seconds: 효과 지속 시장 초. immediate-percent는 발표 때 한 번만 적용됩니다(config.yml news.instant-scale 배).
+# 즉시/누적 변동 한도와 반전 확률은 config.yml의 news.* 설정을 함께 따릅니다.
+# 반전 시 상승 확률과 즉시 변동 방향이 뒤집히지만 뉴스 문구는 그대로 표시됩니다.
+# 서버 휴장/종료 중에는 시장 시계가 정지합니다. 항목을 복사하여 개수 제한 없이 추가할 수 있습니다.
+news:
+  # 새벽들제분 · 호재
+  mill-up-01:
+    headline: '{stock}, 마을 제빵 조합과 밀가루 장기 공급 계약'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.9
+    multiplier: 3
+    immediate-percent: 9
+  mill-up-02:
+    headline: '{stock}, 수차 두 대로 밤새 밀 한 창고 제분'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.88
+    multiplier: 2.6
+    immediate-percent: 7
+  mill-up-03:
+    headline: '{stock}, 호밀빵 시식회에 주민 줄 서자 추가 주문'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.86
+    multiplier: 2.4
+    immediate-percent: 6
+  mill-up-04:
+    headline: '{stock}, 폐광 철길 복구로 밀 운송비 절반 절감'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.85
+    multiplier: 2.2
+    immediate-percent: 5
+  mill-up-05:
+    headline: '{stock}, 사막 마을에 첫 공동 제분소 개장'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.82
+    multiplier: 2
+    immediate-percent: 5
+  # 새벽들제분 · 악재
+  mill-down-01:
+    headline: '{stock}, 창고 지붕이 새 밀가루 스무 포대 폐기'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.12
+    multiplier: 2.6
+    immediate-percent: -7
+  mill-down-02:
+    headline: '{stock}, 수로가 얼어 수차 멈춰…아침 납품 지연'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.14
+    multiplier: 2.4
+    immediate-percent: -6
+  mill-down-03:
+    headline: '{stock}, 건초 더미를 밀로 잘못 싣고 수레 회송'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.15
+    multiplier: 2.2
+    immediate-percent: -5
+  mill-down-04:
+    headline: '{stock}, 맷돌 축 파손으로 야간 제분 중단'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.18
+    multiplier: 2
+    immediate-percent: -5
+  mill-down-05:
+    headline: '{stock}, 풍년 뒤 밀가루 재고 늘어 도매가 인하'
+    sectors: []
+    stocks: [redtech]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.2
+    multiplier: 1.8
+    immediate-percent: -4
+  # 유리등극장 · 호재
+  stage-up-01:
+    headline: '{stock}, 노트 블록 오케스트라 첫날 전석 매진'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.9
+    multiplier: 3
+    immediate-percent: 9
+  stage-up-02:
+    headline: '{stock}, 폐광 야외무대에 광산 수레 관람석 증설'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.88
+    multiplier: 2.6
+    immediate-percent: 7
+  stage-up-03:
+    headline: '{stock}, 그림자 인형극 순회공연 세 마을 추가'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.86
+    multiplier: 2.4
+    immediate-percent: 6
+  stage-up-04:
+    headline: '{stock}, 자수정 종소리 공연 음반 초판 완판'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.85
+    multiplier: 2.2
+    immediate-percent: 5
+  stage-up-05:
+    headline: '{stock}, 낮 공연 신설로 빈 객석 줄어'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.82
+    multiplier: 2
+    immediate-percent: 5
+  # 유리등극장 · 악재
+  stage-down-01:
+    headline: '{stock}, 레드스톤 조명 고장으로 개막 공연 연기'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.12
+    multiplier: 2.6
+    immediate-percent: -7
+  stage-down-02:
+    headline: '{stock}, 무대 밑 슬라임 발견…저녁 표 환불'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.14
+    multiplier: 2.4
+    immediate-percent: -6
+  stage-down-03:
+    headline: '{stock}, 비에 젖은 양털 막 교체로 극장 휴관'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.15
+    multiplier: 2.2
+    immediate-percent: -5
+  stage-down-04:
+    headline: '{stock}, 철도 점검과 겹친 순회공연 예매 급감'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.18
+    multiplier: 2
+    immediate-percent: -5
+  stage-down-05:
+    headline: '{stock}, 폭죽 창고 누수로 피날레 재료 전량 교체'
+    sectors: []
+    stocks: [cloud]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.2
+    multiplier: 1.8
+    immediate-percent: -4
+  # 현무암방호공업 · 호재
+  shield-up-01:
+    headline: '{stock}, 마을 북문 방호벽 보강 공사 수주'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.9
+    multiplier: 3
+    immediate-percent: 9
+  shield-up-02:
+    headline: '{stock}, 돌풍 시험 통과한 새 방패 주문 증가'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.88
+    multiplier: 2.6
+    immediate-percent: 7
+  shield-up-03:
+    headline: '{stock}, 망루 조립 시간 단축해 납기 앞당겨'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.86
+    multiplier: 2.4
+    immediate-percent: 6
+  shield-up-04:
+    headline: '{stock}, 흑요석 절단 공정 개선으로 자재 절약'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.85
+    multiplier: 2.2
+    immediate-percent: 5
+  shield-up-05:
+    headline: '{stock}, 눈 덮인 초소에 방한 장비 첫 납품'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.82
+    multiplier: 2
+    immediate-percent: 5
+  # 현무암방호공업 · 악재
+  shield-down-01:
+    headline: '{stock}, 연결쇠 규격 오류로 방패 한 묶음 회수'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.12
+    multiplier: 2.6
+    immediate-percent: -7
+  shield-down-02:
+    headline: '{stock}, 자갈길 붕괴로 성문 부품 배송 지연'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.14
+    multiplier: 2.4
+    immediate-percent: -6
+  shield-down-03:
+    headline: '{stock}, 교대용 종 불량으로 망루 검사 재실시'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.15
+    multiplier: 2.2
+    immediate-percent: -5
+  shield-down-04:
+    headline: '{stock}, 철괴 공급가 올라 갑옷 주문 수익 감소'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.18
+    multiplier: 2
+    immediate-percent: -5
+  shield-down-05:
+    headline: '{stock}, 모래 폭풍에 시험장 매몰…검수 일정 연기'
+    sectors: []
+    stocks: [deepoil]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.2
+    multiplier: 1.8
+    immediate-percent: -4
+  # 반딧불연산소 · 호재
+  lantern-up-01:
+    headline: '{stock}, 분류 회로 개선으로 상자 처리량 두 배'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.9
+    multiplier: 3
+    immediate-percent: 9
+  lantern-up-02:
+    headline: '{stock}, 주민 도서관에 자동 색인 장치 납품'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.88
+    multiplier: 2.6
+    immediate-percent: 7
+  lantern-up-03:
+    headline: '{stock}, 폐열 회수 장치로 연산실 난방비 절감'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.86
+    multiplier: 2.4
+    immediate-percent: 6
+  lantern-up-04:
+    headline: '{stock}, 지도 경로 계산기 시범 운영 마쳐'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.85
+    multiplier: 2.2
+    immediate-percent: 5
+  lantern-up-05:
+    headline: '{stock}, 작물 선별기 예약 물량 한 달 치 확보'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.82
+    multiplier: 2
+    immediate-percent: 5
+  # 반딧불연산소 · 악재
+  lantern-down-01:
+    headline: '{stock}, 비교기 배선 오류로 선별기 출하 중지'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.12
+    multiplier: 2.6
+    immediate-percent: -7
+  lantern-down-02:
+    headline: '{stock}, 냉각수 누수로 연산실 야간 가동 중단'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.14
+    multiplier: 2.4
+    immediate-percent: -6
+  lantern-down-03:
+    headline: '{stock}, 지도 색인 중복 발견…납품 일정 조정'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.15
+    multiplier: 2.2
+    immediate-percent: -5
+  lantern-down-04:
+    headline: '{stock}, 신호 지연으로 자동문 주문 잇따라 취소'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.18
+    multiplier: 2
+    immediate-percent: -5
+  lantern-down-05:
+    headline: '{stock}, 시험 회로 과열로 부품 재주문'
+    sectors: []
+    stocks: [greenbio]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.2
+    multiplier: 1.8
+    immediate-percent: -4
+  # 은고리궤도운송 · 호재
+  orbit-up-01:
+    headline: '{stock}, 달빛 항로 개설로 첫 정기 화물편 만석'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.9
+    multiplier: 3
+    immediate-percent: 9
+  orbit-up-02:
+    headline: '{stock}, 재사용 화물 캡슐 회수 시험 성공'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.88
+    multiplier: 2.6
+    immediate-percent: 7
+  orbit-up-03:
+    headline: '{stock}, 궤도 창고 증설로 화물 대기 시간 단축'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.86
+    multiplier: 2.4
+    immediate-percent: 6
+  orbit-up-04:
+    headline: '{stock}, 별자리 관측소와 보급품 운송 계약'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.85
+    multiplier: 2.2
+    immediate-percent: 5
+  orbit-up-05:
+    headline: '{stock}, 경량 적재함 도입해 운송비 절감'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.82
+    multiplier: 2
+    immediate-percent: 5
+  # 은고리궤도운송 · 악재
+  orbit-down-01:
+    headline: '{stock}, 발사대 결빙으로 첫 화물편 결항'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.12
+    multiplier: 2.6
+    immediate-percent: -7
+  orbit-down-02:
+    headline: '{stock}, 도킹 고리 균열 발견…예비선 긴급 투입'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 45
+    rise-chance: 0.14
+    multiplier: 2.4
+    immediate-percent: -6
+  orbit-down-03:
+    headline: '{stock}, 궤도 표지등 점검으로 야간편 감축'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.15
+    multiplier: 2.2
+    immediate-percent: -5
+  orbit-down-04:
+    headline: '{stock}, 화물 무게 오기로 발사 직전 재계량'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 40
+    rise-chance: 0.18
+    multiplier: 2
+    immediate-percent: -5
+  orbit-down-05:
+    headline: '{stock}, 회수 낙하산 수선으로 다음 운송편 연기'
+    sectors: []
+    stocks: [blueenergy]
+    weight: 1
+    duration-seconds: 35
+    rise-chance: 0.2
+    multiplier: 1.8
+    immediate-percent: -4
